@@ -1,0 +1,23 @@
+<block name="header"><include file="./Public/View/header.html" title="{-$title|default=getSignValue('WEBSITE_NAME')-}" /></block>
+<block name="header_ext"></block>
+</head>
+<body>
+<div class="bottom_tools">
+    <!--<a id="feedback" href="http://sc.chinaz.com" title="意见反馈">意见反馈</a>-->
+    <a id="scrollUp" href="javascript:;" title="飞回顶部"></a>
+</div>
+<block name="top_menu"><include file="./Public/View/Admin/top_menu.html"/></block>
+
+<div class="container-fluid" style="margin-top: 60px;">
+    <div class="row">
+        <block name="left_menu"><include file="./Public/View/Admin/left_menu.html" c_index="{-$c_index-}" m_index="{-$m_index-}"/></block>
+        <div class="col-sm-9 col-md-10 main">
+            <block name="content"></block>
+        </div>
+        <block name="footer_ext"></block>
+        <include file="./Public/View/Admin/brand.html"/>
+    </div>
+</div>
+
+<block name="footer"><include file="./Public/View/footer.html" /></block>
+<!--admin_base-->

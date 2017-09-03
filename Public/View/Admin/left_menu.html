@@ -1,0 +1,96 @@
+<style type="text/css">
+    .nav-pills > li > a
+    {
+        padding: 5px 15px
+    }
+    .nav-stacked .navbar-header{
+        cursor:pointer;
+        height:30px;
+        line-height: 30px;
+        padding:2px;
+        border-radius: 4px;
+    }
+    .nav-stacked .navbar-header:hover{
+        background-color: #dddddd;
+    }
+    .nav-stacked .navbar-none{
+        display: none;
+    }
+
+</style>
+<div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-pills nav-stacked">
+        <!-- <li class="navbar-header" id="menu_menu_id">
+            menu.name&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+        </li>
+        <li>
+            <a id="left_menu_menu_id_childMenu_id" class="navbar-none"  href="childMenu['cUrl'])">
+                childMenu.name
+            </a>
+        </li> -->
+
+        <li class="navbar-header" id="role">
+            权限管理&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+        </li>
+        <li>
+            <a id="left_role_childMenu_id" class="navbar-none" href="__MODULE__/Role/roleList">
+                角色列表
+            </a>
+        </li>
+        <li>
+            <a id="left_role_role_id" class="navbar-none" href="__MODULE__/Permissions/roleList">
+                权限列表
+            </a>
+        </li>
+
+        <li class="navbar-header" id="admin">
+            管理员管理&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+        </li>
+        <li>
+            <a id="left_admin_childMenu_id" class="navbar-none" href="__MODULE__/Admin/adminList">
+                管理员列表
+            </a>
+        </li>
+
+        <li class="navbar-header" id="book">
+            图书管理&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+        </li>
+        <li>
+            <a id="left_book_childMenu_id" class="navbar-none" href="__MODULE__/Book/bookList">
+                图书列表
+            </a>
+        </li>
+    </ul>
+    <script type="text/javascript">
+        $(".sidebar #left_menu_[c_index]_[m_index]").parent().addClass("active");
+        $(".sidebar a[id^=left_menu_[c_index]_]").removeClass("navbar-none");
+        $(".sidebar #menu_[c_index] span").addClass('glyphicon-triangle-bottom');
+        $(function(){
+            $(".navbar-header").click(function(){
+                var element=$(".sidebar li a[id^=left_"+this.id+"_]");
+
+                if(element.is(":visible")){
+                    element.addClass("navbar-none");
+                    //element.hide();
+                    $(".sidebar #"+this.id+" span").removeClass('glyphicon-triangle-bottom').addClass('glyphicon-triangle-right');
+                }else{
+                    element.removeClass("navbar-none");
+                    //element.show();
+                    $(".sidebar #"+this.id+" span").removeClass('glyphicon-triangle-right').addClass('glyphicon-triangle-bottom');
+                }
+
+            });
+        })
+        // 固定菜单位置
+        $(".sidebar .nav").pin({
+            //containerSelector: ".container", //将某元素“钉”在容器内
+            padding: {top: 60, bottom: 10},
+            minWidth: 800  //在小尺寸的屏幕上禁用Pin效果
+        })
+    </script>
+
+</div>

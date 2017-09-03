@@ -1,0 +1,82 @@
+<notempty name="searchConfigList">
+<load href='__PUBLIC__/Lib/bootstrap-daterangepicker/css/daterangepicker.css' />
+<load href='__PUBLIC__/Lib/bootstrap-daterangepicker/js/moment.js' />
+<load href='__PUBLIC__/Lib/bootstrap-daterangepicker/js/daterangepicker.js' />
+    <script type="text/javascript">
+        $(function(){
+            // 回车搜索
+            $('#searchForm input').keypress(function (e) {
+                if(e.which == 13)
+                   /* if(e.ctrlKey)
+                        $("#sendContent").val($("#sendContent").val()+'\n');
+                    else*/
+                        $("#searchForm").submit();
+            });
+        })
+    </script>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" method="get" action="[action]">
+            <foreach name="searchConfigList" item="config">
+                <div class="form-group">
+                    <eq name="config|count" value="2">
+                        <div class="input-group">
+                        <foreach name="config" key="searchName" item="obj">
+                            <eq name="obj.type" value="select">
+                                    <span class="input-group-btn">
+                                        <select class="form-control" <notempty name="obj.id">id="{-$obj.id-}"</notempty> name="{-$searchName-}">
+                                            <foreach name="obj.option" key="optionId" item="optionName">
+                                                <option value="{-$optionId-}" <nheq name="obj.value" value=""><eq name="optionId" value="$obj.value">selected</eq></nheq> >{-$optionName-}</option>
+                                            </foreach>
+                                        </select>
+                                     </span>
+                                <else />
+                                <input type="text" class="form-control" name="{-$searchName-}" <notempty name="obj.placeholder">placeholder="{-$obj.placeholder-}"</notempty> <notempty name="obj.value">value="{-$obj.value-}"</notempty> >
+                            </eq>
+                        </foreach>
+                        </div>
+                    <else />
+                        <foreach name="config" key="searchName" item="obj">
+                            <notempty name="obj.title"><label <notempty name="obj.id">for="{-$obj.id-}"</notempty> >{-$obj.title-}</label></notempty>
+                            <switch name="obj.type">
+                                <case value="input">
+                                    <input type="text" class="form-control" <notempty name="obj.id">id="{-$obj.id-}"</notempty> name="{-$searchName-}" <notempty name="obj.placeholder">placeholder="{-$obj.placeholder-}"</notempty> <notempty name="obj.value">value="{-$obj.value-}"</notempty> >
+                                </case>
+                                <case value="select">
+                                    <select class="form-control" <notempty name="obj.id">id="{-$obj.id-}"</notempty> name="{-$searchName-}">
+                                    <notempty name="obj.optionDefault"><option value="">{-$obj.optionDefault-}</option> </notempty>
+                                    <foreach name="obj.option" key="optionId" item="optionName">
+                                        <option value="{-$optionId-}" <nheq name="obj.value" value=""><eq name="optionId" value="$obj.value">selected</eq></nheq> >{-$optionName-}</option>
+                                    </foreach>
+                                    </select>
+                                </case>
+                                <case value="dateRange">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></div>
+                                        <input type="text" class="form-control" <notempty name="obj.id">id="{-$obj.id-}"</notempty> name="{-$searchName-}" <notempty name="obj.placeholder">placeholder="{-$obj.placeholder-}"</notempty> >
+                                        <div class="input-group-addon date-remove" style="cursor: pointer;"><i class="glyphicon glyphicon-remove"></i></div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function() {
+                                            $('#{-$obj.id-}').daterangepicker({
+                                                "language":  'zh-CN',
+                                                "autoApply": true,
+                                                "linkedCalendars": false,
+                                                "startDate": '{-$obj.value|substr=###,0,10-}',
+                                                "endDate":'{-$obj.value|substr=###,-10-}'
+                                            }, function(start, end, label) {
+                                                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+                                            });
+                                        });
+                                    </script>
+                                </case>
+                            </switch>
+                        </foreach>
+                    </eq>
+                </div>
+            </foreach>
+            <button type="submit" class="btn btn-default" id="searchBtn">搜索</button>
+        </form>
+    </div>
+</div>
+</notempty>

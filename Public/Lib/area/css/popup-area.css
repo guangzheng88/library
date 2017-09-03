@@ -1,0 +1,8 @@
+.tags_area li{float:left; background: #f8f8f8; padding:2px 10px; cursor:pointer;margin-right:10px;line-height:25px;}
+.tags_area li.now{background: #e0edf2}
+.panel{border-top:1px solid #d3d3d3;padding:15px 0;}
+.panel li{float:left;margin-right:5px;font-size:14px;}
+#locationPanel1 li{width:100px;}
+#locationPanel2 li{font-size:12px;}
+#locationPanel2 li a:link,#locationPanel2 li a:visited{color:#31AFE9}
+#locationPanel2 li a:hover{text-decoration:underline;}

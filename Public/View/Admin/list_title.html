@@ -1,0 +1,20 @@
+<thead>
+<tr>
+    <foreach name="titleConfigList" item="config">
+    <th>
+        <eq name="config.batch" value="true">
+            <label class="checkbox-inline">
+                <input type="checkbox" value="batch" id="batch" title="全选"> 全选
+            </label>
+        </eq>
+        <eq name="config.orderBy" value="true">
+
+            <a href="javascript:void(0);" class="orderBy" id="orderBy_{-$config.field-}" title="排序">{-$config.title-}
+            </a>
+        <else/>
+            {-$config.title-}
+        </eq>
+    </th>
+    </foreach>
+</tr>
+</thead>

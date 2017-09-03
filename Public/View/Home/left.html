@@ -1,0 +1,10 @@
+<div class="col-xs-12 col-sm-3">
+
+    <div class="list-group">
+        <a href="{-:U('member/index')-}" class="list-group-item <eq name='nav_index' value='index'>active</eq>"><span class="glyphicon glyphicon-user" aria-hidden="true"> 我的资料</span></a>
+        <a href="{-:U('member/password')-}" class="list-group-item <eq name='nav_index' value='password'>active</eq>"><span class="glyphicon glyphicon-lock" aria-hidden="true"> 修改密码</span></a>
+        <a href="{-:U('member/list')-}" class="list-group-item <eq name='nav_index' value='list'>active</eq>"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"> 我的发布</span> <span class="label label-primary pull-right">{-$messageCount|default=0-}</span></a>
+        <a href="{-:U('member/follow')-}" class="list-group-item <eq name='nav_index' value='follow'>active</eq>"><span class="glyphicon glyphicon-heart" aria-hidden="true"> 我的关注</span> <span class="label label-primary pull-right">{-$followCount|default=0-}</span></a>
+        <a href="{-:U('member/comment')-}" class="list-group-item <eq name='nav_index' value='comment'>active</eq>"><span class="glyphicon glyphicon-th-list" aria-hidden="true"> 我的评论</span> <span class="label label-primary pull-right">{-$commentCount|default=0-}</span></a>
+    </div>
+</div>

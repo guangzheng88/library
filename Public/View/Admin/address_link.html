@@ -1,0 +1,6 @@
+<ol class="breadcrumb">
+    <li><a href="__MODULE__">首页</a></li>
+    <volist name="addressLink" id="linkVo" key="linkKey" >
+        <li <eq name="addressLink|count" value="$linkKey">class="active"</eq> ><a href="{-$linkVo.cUrl-}" title="{-$linkVo.name-}">{-$linkVo.name-}</a></li>
+    </volist>
+</ol>

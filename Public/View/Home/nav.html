@@ -1,0 +1,62 @@
+<style type="text/css">
+    .nav .action{background-color:#EEEEEE;font-weight: bold;}
+</style>
+<div class="navbar-wrapper">
+    <div class="row" style="background-color: #EEEEEE">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li>客服热线：{-:getSignValue('CUSTOMER_MOBILE')-}</li>
+            </ul>
+            <ul class="pull-right list-inline" style="margin-bottom: 2px;">
+                <empty name="isLogin">
+                    <li><a href="{-:U('member/login')-}">登录</a></li>
+                    <li><a href="{-:U('member/login/flag/register')-}">注册</a></li>
+                    <else/>
+                    <li><a href="{-:U('member/index')-}">欢迎<span class="text-danger"> {-$memberInfo.username-}</span></a></li>
+                    <li><a href="{-:U('member/exit')-}" title="退出"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                </empty>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="__ROOT__/">{-:getSignValue('WEBSITE_NAME')-}</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="__ROOT__/">首页</a></li>
+                        <volist name="navList" id="navItem" offset="0" length='7'>
+                            <li <eq name="Think.cookie.search_id" value="$navItem.value">class="action"</eq>><a href="{-:U('index/'.$Think.ACTION_NAME,['id'=>$navItem['value']])-}">{-$navItem.name-}</a></li>
+                        </volist>
+                        <gt name="navList|count" value="7">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <volist name="navList" id="navItem" offset="7" length='12'>
+                                    <li <eq name="Think.cookie.search_id" value="$navItem.value">class="action"</eq>><a href="{-:U('index/'.$Think.ACTION_NAME,['id'=>$navItem['value']])-}">{-$navItem.name-}</a></li>
+                                    </volist>
+                                </ul>
+                            </li>
+                        </gt>
+                    </ul>
+                    <div class="nav navbar-nav navbar-right" style="margin-top: 10px;">
+                        <a href="{-:U('index/index')-}" class="btn <eq name='Think.ACTION_NAME' value='index'>btn-primary<else/>btn-default</eq>">找房子</a>
+                        <a href="{-:U('index/home')-}" class="btn <eq name='Think.ACTION_NAME' value='home'>btn-primary<else/>btn-default</eq>">找房客</a>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+</div>
+
